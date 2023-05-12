@@ -10,7 +10,7 @@ router.post("/user/register", userController.register);
 router.post("/user/login", userController.login);
 router.get("/user/getUser", authenticator, userController.getUser);
 
-router.post("/task/create-task", taskController.createTask);
-router.get("/task/list-tasks", taskController.listTasks);
+router.post("/task/create-task", authenticator, taskController.createTask);
+router.get("/task/list-tasks", authenticator, taskController.listTasks);
 
 module.exports = router;

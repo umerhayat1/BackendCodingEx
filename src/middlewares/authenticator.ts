@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-export const authenticator = (req: Request, res: Response, next: () => void) => {
+export const authenticator = (req: any, res: any, next: () => void) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     res.status(401).json({ message: "Unauthorized" });
