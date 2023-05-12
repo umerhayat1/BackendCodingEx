@@ -6,11 +6,19 @@ import { authenticator } from "../middlewares/authenticator";
 import * as taskController from "../controllers/taskController";
 import * as userController from "../controllers/userController";
 
-router.post("/user/register", userController.register);
-router.post("/user/login", userController.login);
+import { validate } from "../validation/joi";
+import { register, login, createTask } from "../validation/joi";
+
+router.post("/user/register", validate(register), userController.register);
+router.post("/user/login", validate(login), userController.login);
 router.get("/user/getUser", authenticator, userController.getUser);
 
-router.post("/task/create-task", authenticator, taskController.createTask);
+router.post(
+  "/task/create-task",
+  validate(createTask),
+  authenticator,
+  taskController.createTask
+);
 router.get("/task/list-tasks", authenticator, taskController.listTasks);
 
 module.exports = router;
