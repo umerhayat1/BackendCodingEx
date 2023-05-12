@@ -6,19 +6,18 @@ exports.register = async (email: string, password: string) => {
     password: password,
   };
   let userData = await userModel.create(user);
-  return userData;
+  return { _id: userData._id, email: userData.email };
 };
 
 exports.login = async (email: string, password: string) => {
   let user = await userModel.find({ email: email });
-  const token = jwt.sign(
-    { userId: user[0]._id},
-    "secret",
-    { expiresIn: "1h" }
-  );
-  return { user: user[0], token: token };
+  const token = jwt.sign({ userId: user[0]._id }, "secret", {
+    expiresIn: "1h",
+  });
+  return { jwt: token };
 };
 
-exports.getUser = async (req: Request, res: Response) => {
-  console.log("=========getUser===============");
+exports.getUser = async (id: String) => {
+  let user = await userModel.find({ _id: id }, { _id: 1, email: 1 });
+  return user[0];
 };
