@@ -2,13 +2,9 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from "cors";
 import {connectDatabase} from './src/config/database'
-import bodyParser from "body-parser";
-import path from "path";
+
 dotenv.config();
 const app: Express = express();
-
-import * as taskController from "./src/controllers/taskController";
-import * as userController from "./src/controllers/userController";
 
 const port = process.env.PORT;
 

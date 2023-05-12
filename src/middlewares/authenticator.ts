@@ -10,7 +10,6 @@ export const authenticator = (req: Request, res: Response, next: () => void) => 
   const token = authHeader.split(" ")[1];
   try {
     const decoded = jwt.verify(token, "secret") as { userId: string };
-    console.log("------------------------------------------", decoded.userId);
     res.status(200).json({ userId: decoded.userId });
     next();
   } catch (err) {
