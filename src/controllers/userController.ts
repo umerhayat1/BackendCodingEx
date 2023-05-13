@@ -33,8 +33,7 @@ export const login = async (req: Request, res: Response) => {
 
 export const getUser = async (req: Request, res: Response) => {
   try {
-    const { userId } = req;
-    let data = await userService.getUser(userId);
+    let data = await userService.getUser(req.userId);
     res.send(responses.success("Ok", data));
   } catch (err) {
     res.send(responses.error());

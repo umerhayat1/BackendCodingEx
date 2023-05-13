@@ -1,6 +1,7 @@
 const taskModel = require("../models/taskModel");
 
 const createTask = async (name: String, userId: String) => {
+  //creating task object.
   let task = {
     userId: userId,
     name: name,
@@ -10,6 +11,7 @@ const createTask = async (name: String, userId: String) => {
 };
 
 const listTasks = async (userId: String) => {
+  // finding tasks by userId, selecting only _id and name fields and return.
   let tasks = await taskModel
     .find({ userId: userId })
     .select({ _id: 1, name: 1 });

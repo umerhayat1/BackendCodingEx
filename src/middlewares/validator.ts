@@ -2,6 +2,7 @@ import { Schema, ValidationResult, ObjectSchema } from "joi";
 import { RequestHandler } from "express";
 import Joi from "joi";
 
+// request schema validator.
 export function validate(schema: Schema): RequestHandler {
   return (req, res, next) => {
     const result: ValidationResult = schema.validate(req.body);
@@ -12,6 +13,7 @@ export function validate(schema: Schema): RequestHandler {
   };
 }
 
+//Schema validations for APIs.
 export const register: ObjectSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
