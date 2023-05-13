@@ -6,8 +6,8 @@ import { authenticator } from "../middlewares/authenticator";
 import * as taskController from "../controllers/taskController";
 import * as userController from "../controllers/userController";
 
-import { validate } from "../validation/joi";
-import { register, login, createTask } from "../validation/joi";
+import { validate } from "../middlewares/joi";
+import { register, login, createTask } from "../middlewares/joi";
 
 router.post("/user/register", validate(register), userController.register);
 router.post("/user/login", validate(login), userController.login);
