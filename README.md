@@ -45,8 +45,7 @@ Post /api/task/list-tasks
 
 ### Mongo Db 
 
-
-### - Clone the project and required branch by using `git CLI`
+### - Clone the project using `git CLI`
 
 ### - Run the following command to install all the required dependencies. <br/>
 
