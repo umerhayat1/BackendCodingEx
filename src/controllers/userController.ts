@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 const { responses } = require("../config/constants");
-//@ts-ignore
 import userService from "../services/userService";
 export const register = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -21,7 +20,7 @@ export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
     let data = await userService.login(email, password);
-    if (data) {
+    if (data && data.jwt) {
       res.send(responses.success("Ok", data));
     } else {
       res.send(responses.failure("Email or password is incorrect!"));
@@ -34,7 +33,8 @@ export const login = async (req: Request, res: Response) => {
 
 export const getUser = async (req: Request, res: Response) => {
   try {
-    let data = await userService.getUser(req.userId);
+    const { userId } = req;
+    let data = await userService.getUser(userId);
     res.send(responses.success("Ok", data));
   } catch (err) {
     res.send(responses.error());

@@ -29,5 +29,6 @@ exports.responses = {
   },
 };
 
-exports.port = process.env.port;
-exports.secretKey = process.env.autheticatorSecret;
+export const port: any = process.env.port;
+export const secretKey: any = process.env.autheticatorSecret;
+export const saltRounds: any = 10;

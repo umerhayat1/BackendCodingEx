@@ -16,4 +16,4 @@ const listTasks = async (userId: String) => {
   return tasks;
 };
 
-module.exports = { createTask, listTasks };
+export default { createTask, listTasks };

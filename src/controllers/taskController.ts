@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 const { responses } = require("../config/constants");
-//@ts-ignore
 import taskService from "../services/taskService";
 export const createTask = async (req: Request, res: Response) => {
   const { name } = req.body;
