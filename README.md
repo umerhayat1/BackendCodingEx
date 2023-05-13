@@ -45,7 +45,6 @@ Post /api/task/list-tasks
 
 ### Mongo Db 
 
-[<img src="https://sequelize.org/img/logo.svg" width="150" title="Sequelize">](https://sequelize.org/)
 
 ### - Clone the project and required branch by using `git CLI`
 
