@@ -1,9 +1,8 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+import express, { Express, Request, Response } from "express";
 import cors from "cors";
-import {connectDatabase} from './src/config/database'
+import { connectDatabase } from "./src/config/database";
 
-dotenv.config();
+import { port } from "./src/config/constants";
 const app: Express = express();
 
 const port = process.env.PORT;
@@ -11,7 +10,7 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 
-app.use("/api",require('./src/routes/routes'))
+app.use("/api", require("./src/routes/routes"));
 
 connectDatabase();
 app.listen(port, () => {

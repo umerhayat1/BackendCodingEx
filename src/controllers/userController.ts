@@ -2,13 +2,15 @@ import { Request, Response } from "express";
 const { responses } = require("../config/constants");
 //@ts-ignore
 import userService from "../services/userService";
-import { decode } from "punycode";
 export const register = async (req: Request, res: Response) => {
-  console.log("register");
   const { email, password } = req.body;
   try {
     let user = await userService.register(email, password);
-    res.send(responses.success("Ok", user));
+    if (user) {
+      res.send(responses.success("Ok", user));
+    } else {
+      res.send(responses.failure("This email is already registered!"));
+    }
   } catch (err) {
     res.send(responses.error());
     console.log("Error:", err);
@@ -16,11 +18,14 @@ export const register = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
-  console.log("login");
   const { email, password } = req.body;
   try {
     let data = await userService.login(email, password);
-    res.send(responses.success("Ok", data));
+    if (data) {
+      res.send(responses.success("Ok", data));
+    } else {
+      res.send(responses.failure("Email or password is incorrect!"));
+    }
   } catch (err) {
     res.send(responses.error());
     console.log("Error:", err);

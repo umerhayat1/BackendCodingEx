@@ -1,6 +1,6 @@
 const taskModel = require("../models/taskModel");
 
-exports.createTask = async (name: String, userId: String) => {
+const createTask = async (name: String, userId: String) => {
   let task = {
     userId: userId,
     name: name,
@@ -9,9 +9,11 @@ exports.createTask = async (name: String, userId: String) => {
   return { _id: taskData._id, name: taskData.name };
 };
 
-exports.listTasks = async (userId: String) => {
+const listTasks = async (userId: String) => {
   let tasks = await taskModel
     .find({ userId: userId })
     .select({ _id: 1, name: 1 });
   return tasks;
 };
+
+module.exports = { createTask, listTasks };
